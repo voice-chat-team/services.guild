@@ -8,8 +8,8 @@ async function bootstrap() {
     {
       transport: Transport.GRPC,
       options: {
-        package: 'guild.v1',
-        protoPath: 'node_modules/@voice-chat/contracts/proto/guild.proto',
+        package: 'user.v1',
+        protoPath: 'node_modules/@voice-chat/contracts/proto/user.proto',
         url: 'localhost:5053',
       },
     },
