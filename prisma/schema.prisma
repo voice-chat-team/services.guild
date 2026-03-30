@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "./generated"
+  moduleFormat    = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Guild {
+  id String @id @default(uuid())
+
+  name String
+  description String?
+  isPublic Boolean @default(true) @map("is_public")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("guilds")
+}
+
+model GuildMembers {
+  id String @id @default(uuid())
+
+  userId String @map("user_id")
+  guildId String @map("guild_id")
+  isGuildOwner Boolean @default(false) @map("is_guild_owner")
+  isBanned Boolean @default(false) @map("is_banned")
+
+  joinedAt DateTime @default(now()) @map("joined_at")
+  bannedAt DateTime? @map("banned_at")
+
+  @@map("guild_members")
+}
